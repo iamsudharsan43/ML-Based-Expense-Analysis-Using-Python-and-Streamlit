@@ -133,19 +133,25 @@ categories = ["Food","Rent","Travel","Shopping","Bills","Others"]
 # ================= SALARY =================
 cur.execute("SELECT salary FROM salary WHERE username=?", (user,))
 row = cur.fetchone()
-salary_val = row[0] if row else 0.0
+
+if "salary" not in st.session_state:
+    st.session_state.salary = row[0] if row else 0.0
 
 salary_input = st.sidebar.number_input(
     "💼 Monthly Salary (₹)",
-    value=float(salary_val),
+    min_value=0.0,
+    value=float(st.session_state.salary),
     step=1000.0
 )
 
-if st.sidebar.button("Save Salary"):
-    cur.execute("REPLACE INTO salary VALUES (?,?)", (user, salary_input))
+if salary_input != st.session_state.salary:
+    cur.execute(
+        "INSERT INTO salary (username, salary) VALUES (?, ?) \
+         ON CONFLICT(username) DO UPDATE SET salary=excluded.salary",
+        (user, salary_input)
+    )
     conn.commit()
-    st.sidebar.success("Salary saved")
-    st.rerun()
+    st.session_state.salary = salary_input
 
 # ================= ADD EXPENSE =================
 st.sidebar.subheader("➕ Add Daily Expense")
