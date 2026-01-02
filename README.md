@@ -103,7 +103,10 @@ streamlit run app.py
 
 ## 📸 Screenshots
 
+> ![Expense Tracker · Streamlit conv 1](https://github.com/user-attachments/assets/1acf6c79-a1d9-42c9-bac3-436ba1c09ce4)
+ 
 > ![Expense Tracker · Streamlit conv 1](https://github.com/user-attachments/assets/57ca71e4-75c0-4d56-a93f-ea3accd85930)
+
 > ![Expense Tracker · Streamlit conv 2](https://github.com/user-attachments/assets/1e5e6615-5b9b-49a5-a629-7c30b38f0722)
 
 
@@ -158,5 +161,6 @@ This project is licensed under the **MIT License**.
 ---
 
 ⭐ If you found this project helpful, don’t forget to **star the repository**!
+
 
 
